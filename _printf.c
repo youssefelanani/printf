@@ -85,76 +85,58 @@ int _printf(const char *format, ...)
 			switch (_tolower(*(format + i)))
 			{
 			case 's':
-				{
-					str_arg =  va_arg(va1, char *);
-					_strcpy(&buff[len_buff], str_arg);
-					len_buff += _strlen(str_arg);
-					break;
-				}
+				str_arg =  va_arg(va1, char *);
+				_strcpy(&buff[len_buff], str_arg);
+				len_buff += _strlen(str_arg);
+				break;
 			case 'c':
-				{
-					buff[len_buff] = (char)va_arg(va1, int);
-					len_buff++;
-					break;
-				}
-			case 'i':
-				{
-					_itof((int)va_arg(va1, int), temp, 10);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'd':
-				{
-					_itof((int)va_arg(va1, int), temp, 10);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'u':
-				{
-					_itof((unsigned int)va_arg(va1, int), temp, 10);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'f':
-				{
-					_itof((float)va_arg(va1, double), temp, 10);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'x':
-				{
-					_itof((int)va_arg(va1, int), temp, 16);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'p':
-				{
-					_itof((int)va_arg(va1, int), temp, 16);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			case 'o':
-				{
-					_itof((int)va_arg(va1, int), temp, 8);
-					_strcpy(&buff[len_buff], temp);
-					len_buff += _strlen(temp);
-					break;
-				}
-			default:
-				buff[len_buff] = *(format + i);
+				buff[len_buff] = (char)va_arg(va1, int);
 				len_buff++;
+				break;
+			case 'i':
+				_itof((int)va_arg(va1, int), temp, 10);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'd':
+				_itof((int)va_arg(va1, int), temp, 10);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'u':
+				_itof((unsigned int)va_arg(va1, int), temp, 10);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'f':
+				_itof((float)va_arg(va1, double), temp, 10);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'x':
+				_itof((int)va_arg(va1, int), temp, 16);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'p':
+				_itof((int)va_arg(va1, int), temp, 16);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			case 'o':
+				_itof((int)va_arg(va1, int), temp, 8);
+				_strcpy(&buff[len_buff], temp);
+				len_buff += _strlen(temp);
+				break;
+			default:
+				i--;
+				buff[len_buff++] = *(format + i);
+				break;
 			}
 		}
 		else
 		{
-			buff[len_buff] = *(format + i);
-			len_buff++;
+			buff[len_buff++] = *(format + i);
 		}
 		i++;
 	}
