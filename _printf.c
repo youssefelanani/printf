@@ -70,7 +70,7 @@ int _printf(const char *format, ...)
 {
 	int i = 0;
 	int len_buff = 0;
-	char buff[100];
+	char buff[1024];
 	char temp[20];
 	char *str_arg;
 	va_list va1;
