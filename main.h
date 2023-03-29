@@ -11,5 +11,6 @@ int _strlen(const char *s);
 int _print(const char *s);
 char _tolower(char s);
 void _strrev(char *s);
+int _printf(const char *format, ...);
 
 #endif
