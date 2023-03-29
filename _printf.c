@@ -8,14 +8,13 @@
  *
  * Return: string
  */
-char *_itof(float num, char *container, int base)
+char *_itof(double num, char *container, int base)
 {
 	int i = 0;
 	int int_num = num;
-	float cp_num = num;
+	double cp_num = num;
 	bool negative = false;
 	int fraction = (cp_num - (int)cp_num) * 1000000;
-
 
 	if (num == 0)
 	{
@@ -23,19 +22,15 @@ char *_itof(float num, char *container, int base)
 		container[i] = '\0';
 		return (container);
 	}
-
 	if (num < 0 && base == 10)
 	{
 		negative = true;
 		num = -num;
 		int_num = -int_num;
 		fraction = -fraction;
-
 	}
-
 	if (num > (int)num)
 	{
-
 		while (fraction != 0 && base == 10)
 		{
 			int rem = fraction % base;
@@ -45,7 +40,6 @@ char *_itof(float num, char *container, int base)
 		}
 		container[i++] = '.';
 	}
-
 	while (int_num != 0)
 	{
 		int rem = int_num % base;
@@ -54,12 +48,10 @@ char *_itof(float num, char *container, int base)
 		int_num = int_num / base;
 	}
 
-
 	if (negative)
 	{
 		container[i++] = '-';
 	}
-
 	container[i++] = '\0';
 	_strrev(container);
 	return (container);
@@ -101,27 +93,27 @@ int _printf(const char *format, ...)
 				}
 			case 'c':
 				{
-					buff[len_buff] = va_arg(va1, int);
+					buff[len_buff] = (char)va_arg(va1, int);
 					len_buff++;
 					break;
 				}
 			case 'i':
 				{
-					_itof((float)va_arg(va1, int), temp, 10);
+					_itof((int)va_arg(va1, int), temp, 10);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
 				}
 			case 'd':
 				{
-					_itof((float)va_arg(va1, int), temp, 10);
+					_itof((int)va_arg(va1, int), temp, 10);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
 				}
 			case 'u':
 				{
-					_itof((float)va_arg(va1, int), temp, 10);
+					_itof((unsigned int)va_arg(va1, int), temp, 10);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
@@ -135,21 +127,21 @@ int _printf(const char *format, ...)
 				}
 			case 'x':
 				{
-					_itof((float)va_arg(va1, int), temp, 16);
+					_itof((int)va_arg(va1, int), temp, 16);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
 				}
 			case 'p':
 				{
-					_itof((float)va_arg(va1, int), temp, 16);
+					_itof((int)va_arg(va1, int), temp, 16);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
 				}
 			case 'o':
 				{
-					_itof((float)va_arg(va1, int), temp, 8);
+					_itof((int)va_arg(va1, int), temp, 8);
 					_strcpy(&buff[len_buff], temp);
 					len_buff += _strlen(temp);
 					break;
