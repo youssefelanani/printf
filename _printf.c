@@ -129,7 +129,6 @@ int _printf(const char *format, ...)
 				len_buff += _strlen(temp);
 				break;
 			default:
-				i--;
 				buff[len_buff++] = *(format + i);
 				break;
 			}
