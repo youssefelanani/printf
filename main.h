@@ -23,5 +23,6 @@ void default_switch_3(const char *format, int *i, int *len_buff, char *buff);
 void _switch_3(const char *format, int *i, va_list va1, int *len_buff,
 		char *buff, char *temp);
 int _printf(const char *format, ...);
+char *decimalToBinary(unsigned int num, char *container);
 
 #endif

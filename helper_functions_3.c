@@ -56,6 +56,11 @@ void _switch_1(char c, va_list va1, int *len_buff, char *buff, char *temp)
 			_strcpy(&buff[*len_buff], temp);
 			*len_buff = *len_buff + _strlen(temp);
 			break;
+		case 'b':
+			decimalToBinary(va_arg(va1, int), temp);
+			_strcpy(&buff[*len_buff], temp);
+			*len_buff = *len_buff + _strlen(temp);
+			break;
 	}
 }
 
@@ -104,11 +109,11 @@ void _switch_2(char c, va_list va1, int *len_buff, char *buff, char *temp)
  */
 void default_switch_3(const char *format, int *i, int *len_buff, char *buff)
 {
-	char _switch_1[8] = {'s', 'c', 'C', 'i', 'd', 'u', 'x', 'X'};
+	char _switch_1[9] = {'s', 'c', 'C', 'i', 'd', 'u', 'x', 'X', 'b'};
 	bool matched = false;
 	int x = 0;
 
-	for (; x < 8; x++)
+	for (; x < 9; x++)
 	{
 		if (*(_switch_1 + x) == *(format + *i))
 		{
