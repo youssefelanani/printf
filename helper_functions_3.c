@@ -95,13 +95,14 @@ void _switch_2(char c, va_list va1, int *len_buff, char *buff, char *temp)
 /**
  * default_switch_3 - contains part to avoid adding any specifiers found in
  *                    _switch_1
- * @c: input char to compare
+ * @format: input string
+ * @i: iterator for the format string
  * @len_buff: index to append in it
  * @buff: string to carry all values
  *
  * Return: void
  */
-void default_switch_3(char c, int *len_buff, char *buff)
+void default_switch_3(const char *format, int *i, int *len_buff, char *buff)
 {
 	char _switch_1[8] = {'s', 'c', 'C', 'i', 'd', 'u', 'x', 'X'};
 	bool matched = false;
@@ -109,7 +110,7 @@ void default_switch_3(char c, int *len_buff, char *buff)
 
 	for (; x < 8; x++)
 	{
-		if (*(_switch_1 + x) == c)
+		if (*(_switch_1 + x) == *(format + *i))
 		{
 			matched = true;
 			break;
@@ -117,7 +118,12 @@ void default_switch_3(char c, int *len_buff, char *buff)
 	}
 	if (matched == false)
 	{
-		buff[*len_buff] = c;
+		if (*(format + *i) != '%')
+		{
+			buff[*len_buff] = *(format + *i - 1);
+			*len_buff = *len_buff + 1;
+		}
+		buff[*len_buff] = *(format + *i);
 		*len_buff = *len_buff + 1;
 	}
 }
@@ -127,7 +133,8 @@ void default_switch_3(char c, int *len_buff, char *buff)
 
 /**
  * _switch_3 - compares (f, p, o) format specifiers
- * @c: input char to compare
+ * @format: input string
+ * @i: iterator for the format string
  * @va1: next value type in the variadic function
  * @len_buff: index to append in it
  * @buff: string to carry all values
@@ -135,9 +142,10 @@ void default_switch_3(char c, int *len_buff, char *buff)
  *
  * Return: void
  */
-void _switch_3(char c, va_list va1, int *len_buff, char *buff, char *temp)
+void _switch_3(const char *format, int *i, va_list va1, int *len_buff,
+		char *buff, char *temp)
 {
-	switch (c)
+	switch (*(format + *i))
 	{
 		case 'f':
 				_itof((float)va_arg(va1, double), temp, 10);
@@ -155,7 +163,7 @@ void _switch_3(char c, va_list va1, int *len_buff, char *buff, char *temp)
 				*len_buff = *len_buff + _strlen(temp);
 				break;
 		default:
-			default_switch_3(c, len_buff, buff);
+			default_switch_3(format, i, len_buff, buff);
 			break;
 	}
 }

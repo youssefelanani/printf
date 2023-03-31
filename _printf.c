@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 			i++;
 			_switch_1(*(format + i), va1, &len_buff, buff, temp);
 			_switch_2(*(format + i), va1, &len_buff, buff, temp);
-			_switch_3(*(format + i), va1, &len_buff, buff, temp);
+			_switch_3(format, &i, va1, &len_buff, buff, temp);
 		}
 		else
 		{

@@ -19,8 +19,9 @@ char *_itou(unsigned int num, char *container, int base);
 unsigned int _abs(int num);
 void _switch_1(char c, va_list va1, int *len_buff, char *buff, char *temp);
 void _switch_2(char c, va_list va1, int *len_buff, char *buff, char *temp);
-void default_switch_3(char c, int *len_buff, char *buff);
-void _switch_3(char c, va_list va1, int *len_buff, char *buff, char *temp);
+void default_switch_3(const char *format, int *i, int *len_buff, char *buff);
+void _switch_3(const char *format, int *i, va_list va1, int *len_buff,
+		char *buff, char *temp);
 int _printf(const char *format, ...);
 
 #endif
