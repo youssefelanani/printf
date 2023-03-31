@@ -153,7 +153,7 @@ void _switch_3(const char *format, int *i, va_list va1, int *len_buff,
 				*len_buff = *len_buff + _strlen(temp);
 				break;
 		case 'p':
-				_toupper(_itou(va_arg(va1, int), temp, 16), 0);
+				_itou(va_arg(va1, int), temp, 16);
 				_strcpy(&buff[*len_buff], temp);
 				*len_buff = *len_buff + _strlen(temp);
 				break;
